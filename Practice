@@ -1,0 +1,49 @@
+show databases;
+use world;
+create table emp_details(Name varchar(25), Age int , gender char(1), doj Date, City varchar(15), salary float);
+describe emp_details;
+insert into emp_details
+values("Rajesh",35,"M","2005-05-30","Chicago",70000),
+("Mukesh",30,"M","1999-06-25","Seattle",55000),
+("Mary",28,"F","2009-03-10","Boston",62000),
+("Suresh",37,"M","2011-07-12","Austin",57000),
+("Dheera",32,"F","2017-10-27","NewYork",72000),
+("Pinky",35,"F","2014-12-20","Seattle",80000);
+select * from emp_details;
+select city from emp_details;
+select count(name) from emp_details;
+select distinct city from emp_details; 
+
+select sum(salary) from emp_details;
+
+select name, age, city from emp_details;
+
+select * from emp_details where age>=30;
+
+select * from emp_details where city="Chicago" or city= "Austin";
+select * from emp_details where city in ("Chicago","Austin");
+
+select * from emp_details where
+doj between "2000-01-01" and "2010-12-31";
+
+select * from emp_details where
+age>30 and gender="F";
+
+select gender,sum(salary) as total_salary from emp_details
+group by gender;
+
+
+select * from emp_details order by salary;
+select * from emp_details order by salary desc;
+
+select (10+20) as addition;
+select (10-20) as subtract;
+select length("Andhra Pradesh") as total_length;
+
+select repeat("@",12);
+select upper("Sahithi");
+select lower("SAHITHI");
+
+select curdate();
+select day(curdate());
+select now();
