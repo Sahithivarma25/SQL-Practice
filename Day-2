@@ -1,0 +1,100 @@
+select power(4,2);
+select mod(10,2);
+select sqrt(9);
+select greatest(2,11,6,3);
+select least(2,11,6,3);
+select truncate(22.891,3);
+select round(11.832);
+
+create table students
+(stu_id int primary key,
+stu_name varchar(25),
+age int,gender char(1),
+doj date, city varchar(25));
+select * from students;
+insert into students
+values(101,"Joseph",22,"M","2016-11-23","Pune"),
+(102,"Nilesh",21,"M","2016-11-23","NewYork"),
+(103,"Vipul",33,"M","2016-11-23","Miami"),
+(104,"Anubhav",61,"M","2016-11-23","Pune"),
+(105,"Utkarsh",45,"M","2016-11-23","NewYork"),
+(106,"Ishan",44,"M","2016-11-23","Miami"),
+(107,"Ankit",52,"M","2016-11-23","Chicago"),
+(108,"Akshay",36,"M","2016-11-23","Pune"),
+(109,"Akash",28,"M","2016-11-23","NewYork"),
+(110,"Tanishq",19,"M","2016-11-23","Miami"),
+(111,"Raghav",24,"M","2016-11-23","Detroit");
+
+insert into students
+values(112,"Anand",54,"M","2016-11-23","Pune"),
+(113,"Amrit",43,"M","2016-11-23","Miami"),
+(114,"Andrew",18,"M","2016-11-23","Boston"),
+(115,"Ricky",26,"M","2016-11-23","Detroit"),
+(116,"Cummins",30,"M","2016-11-23","Chicago"),
+(117,"Rabada",40,"M","2016-11-23","Boston"),
+(118,"Johnson",55,"M","2016-11-23","NewYork"),
+(119,"Adam",45,"M","2016-11-23","Boston"),
+(120,"Illeana",25,"M","2016-11-23","Chicago");
+ 
+#where clause
+select * from students;
+select * from students where city="Pune";
+select * from students where city="Miami" and gender="M";
+select * from students where city="Boston" or city="Chicago";
+select * from students where not city="Chicago";
+
+#group by clause
+select count(stu_name) as totalstudents,city from students group by city;
+
+#having clause
+select city,count(stu_name) as totalstudents from students group by city 
+having count(stu_name)>3;
+
+select * from students order by age desc;
+
+#String Functions
+select concat("India","is","in","Asia") as merged;
+
+select stu_id,stu_name,concat(stu_name,"",age) as name_age from students;
+select reverse("India");
+select replace("Orange is a vegetable","vegetable","Fruit");
+
+select length(ltrim("      India     "));
+select length(rtrim("      India     "));
+select length(trim("      India     "));
+select position("fruit" in "apple is a fruit") as name;
+select ascii("a");
+select ascii(4);
+
+create table employees(emp_id int primary key,emp_name varchar(25),age int,gender char(1),
+doj date,dept varchar(20),city varchar(25),salary float);
+
+describe employees;
+
+insert into employees
+values(101,"Jimmy",25,"M","2005-05-30","Sales","Chicago",70000),
+(102,"Shanne",30,"M","1999-06-25","Marketing","Seattle",55000),
+(103,"Marry",28,"F","2009-03-10","Product","Boston",62000),
+(104,"Dwayne",37,"M","2011-07-12","Tech","Austin",57000),
+(105,"Sara",32,"F","2017-10-27","Sales","Newyork",72000),
+(106,"Ammy",35,"F","2014-12-20","IT","Seattle",80000),
+(107,"Jack",40,"M","2012-07-14","Finance","Houston",100000),
+(108,"Angela",36,"F","2007-02-04","Tech","Newyork",110000),
+(109,"Marcus",25,"M","2010-07-18","HR","Boston",90000),
+(110,"David",34,"M","2009-08-25","Product","Miami",750000);
+
+select * from employees;
+select city from employees;
+select distinct city from employees;
+
+
+select dept,avg(age) from employees group by dept;
+
+select dept,sum(salary) from employees group by dept;
+
+select count(emp_id),city from employees
+group by city
+order by count(emp_id);
+
+select year(doj),count(emp_id) from employees
+group by year(doj);
